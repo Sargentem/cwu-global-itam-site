@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CWU ITAM Global</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Source+Serif+4:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Source Serif 4', serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+    header {
+      background-color: #981e32;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    header img {
+      height: 50px;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      font-family: 'Roboto', sans-serif;
+    }
+    .language-bar {
+      background-color: #f5f5f5;
+      padding: 0.5rem 1rem;
+      text-align: right;
+    }
+    .language-bar select {
+      padding: 0.3rem;
+      font-size: 1rem;
+    }
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 800px;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-banner {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: #981e32;
+      color: white;
+      padding: 1rem 3rem;
+      font-size: 2.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-family: 'Roboto', sans-serif;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.2);
+    }
+    .section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      border-left: 12px solid #981e32;
+      border-right: 12px solid #981e32;
+    }
+    .section h2 {
+      color: #981e32;
+      width: 100%;
+      font-size: 2.75rem;
+      font-family: 'Roboto', sans-serif;
+    }
+    .section p, .section ul {
+      font-size: 1.5rem;
+      line-height: 2;
+      font-family: 'Source Serif 4', serif;
+    }
+    .section img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    }
+    footer {
+      background-color: #981e32;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+    #popupLocation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    #popupLocation select, #popupLocation button {
+      font-size: 1.2rem;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="popupLocation">
+    <div>
+      <p style="font-size: 1.5rem; font-family: 'Roboto', sans-serif; color: #981e32; text-align: center;">Where are you located?</p>
+      <select id="locationSelector">
+        <option value="india">India</option>
+        <option value="brazil">Brazil</option>
+        <option value="nigeria">Nigeria</option>
+      </select>
+      <br>
+      <button onclick="setLocation()">Continue</button>
+    </div>
+  </div>
+
+  <header>
+    <img src="logo.png" alt="CWU Logo">
+    <nav>
+      <a href="#about">ABOUT</a>
+      <a href="#specializations">SPECIALIZATIONS</a>
+      <a href="#modes">MODES OF STUDY</a>
+      <a href="#team">MEET THE TEAM</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <div class="language-bar">
+    <label for="languageSwitcher">Language:</label>
+    <select id="languageSwitcher">
+      <option value="en">English</option>
+      <option value="hi">हिन्दी</option>
+      <option value="pt">Português</option>
+      <option value="yo">Yorùbá</option>
+    </select>
+  </div>
+
+  <div class="hero">
+    <img id="heroImage" src="graduates.jpg" alt="CWU Hero">
+    <div class="hero-banner">Global Information Technology Management</div>
+  </div>
+
+  <section class="section" id="about">
+    <h2>About</h2>
+    <p id="aboutText">Loading...</p>
+  </section>
+
+  <section class="section" id="specializations">
+    <h2>Specializations</h2>
+    <div id="specializationsText">Loading...</div>
+  </section>
+
+  <section class="section" id="modes">
+    <h2>Modes of Study</h2>
+    <div id="modesText">Loading...</div>
+  </section>
+
+  <section class="section" id="team">
+    <h2>Meet the Team</h2>
+    <p id="teamText">Loading...</p>
+    <img id="teamImage" src="faculty_msitam-group.jpg" alt="CWU Team">
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p id="contactText">Loading...</p>
+  </section>
+
+  <footer>
+    &copy; Central Washington University ITAM M.S. Group 1 | 2025
+  </footer>
+
+<script>
+  const content = {
+    india: {
+      heroImage: "india 3.jpeg",
+      about: `Discover a program guided by experts, designed for India’s ambitious, tech-savvy professionals. At CWU, you’ll be a part of a structured, supportive environment that respects your aspirations and empowers your future in data analytics, cybersecurity, or project management. With mentorship from experienced faculty and a community that feels like family, you’ll find purpose, growth, and global opportunity.<br><img src="india 2.jpg" alt="Indian students at CWU" style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">`,
+      specializations: `<ul><li><b>Data Analytics</b>: Gain skills to thrive in India’s AI and GenAI sectors.</li><li><b>Cybersecurity</b>: Learn to protect systems in a cloud-first world.</li><li><b>Project Management</b>: Lead complex, global teams with strategic precision.</li></ul>`,
+      modes: `<ul><li><b>Online and Hybrid Options</b>: Ideal for working professionals or students easing into U.S. life.</li><li><b>Full-Time Study</b>: For those ready to immerse themselves fully in their academic journey.</li></ul><br><img src="india 1.jpg" alt="Study Options in India" style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">`,
+      team: `Meet your mentors: professors, and program leaders with years of experience in global tech industries. At CWU, leadership is respected, mentorship is personalized, and your academic journey is guided by trusted experts who care about your growth.`,
+      contact: `<ul><li><b>Email</b>: globalitam@cwu.edu</li><li>Book a virtual info session</li><li>Speak with a current Indian student</li></ul>`
+    },
+    brazil: {
+      heroImage: "brazil 4.jpg",
+      about: `At CWU, community meets clarity. Brazilian students will feel at home in a warm, supportive atmosphere where purpose-driven education aligns with real-world results. Whether you’re looking to level up your career or explore life abroad, CWU offers a welcoming space to grow, connect, and thrive.<br><img src="brazil 2.jpg" alt="Brazilian students at CWU" style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">`,
+      specializations: `<ul><li><b>IT Management</b>: Bridge the gap between tech and leadership.</li><li><b>Digital Innovation & Analytics</b>: Equip yourself for Brazil’s AI-driven growth.</li><li><b>Cybersecurity & Cloud Computing</b>: Step into roles urgently needed across Brazil’s digital economy.</li></ul>`,
+      modes: `<ul><li><b>Hybrid Learning</b>: Combine academic excellence with time to explore and connect.</li><li><b>Fully Online</b>: Study from Brazil before transitioning to on-campus life, or complete your degree remotely.</li><li><b>Full-Time On Campus</b>: Live and learn in the vibrant Pacific Northwest.</li></ul><br><img src="brazil 3.jpeg" alt="Study Options in Brazil" style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">`,
+      team: `Our faculty are more than just teachers; they’re allies in your success. Learn from passionate professionals who bring real-world experience and heart to the classroom. At CWU, your success is our shared goal.`,
+      contact: `<ul><li><b>Email</b>: globalitam@cwu.edu</li><li>Join a live info session in Portuguese</li></ul>`
+    },
+    nigeria: {
+      heroImage: "nigeria 3.jpg",
+      about: `CWU is more than a university; it’s a trusted path to leadership, success, and global opportunity. With a strong sense of community, hands-on guidance from respected mentors, and vibrant campus life, Nigerian students can pursue excellence while enjoying the journey. Join a family that celebrates your ambition and supports your dreams.<br><img src="nigeria 1.jpg" alt="Nigerian students at CWU" style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">`,
+      specializations: `<ul><li><b>Cybersecurity</b>: Prepare to defend critical systems in Nigeria’s fintech boom.</li><li><b>IT Project Management</b>: Lead with clarity and confidence in fast-paced tech hubs.</li><li><b>Data-Driven Innovation</b>: Unlock insights to drive economic transformation.</li></ul>`,
+      modes: `<ul><li><b>Online and On-Campus Pathways</b>: Designed for flexibility and clarity.</li><li><b>Structured Programs</b>: With clear timeline, guidance, and visa support. CWU ensures a smooth, supported transition to life and learning in the U.S.</li></ul><br><img src="nigeria 2.jpg" alt="Study Options in Nigeria" style="max-width: 100%; margin-top: 1rem; border-radius: 8px;">`,
+      team: `Get to know the team that will walk alongside you from application to graduation. Our professors are respected industry leaders, ready to empower your goals with insight, structure, and care. You’re not just a student here, you’re family.`,
+      contact: `<ul><li><b>Email</b>: globalitam@cwu.edu</li><li>Schedule a call with our team</li><li>Join our next “Life at CWU” webinar featuring Nigerian alumni</li></ul>`
+    }
+  };
+
+  function setLocation() {
+    const loc = document.getElementById("locationSelector").value;
+    document.getElementById("popupLocation").style.display = "none";
+    document.getElementById("heroImage").src = content[loc].heroImage;
+    document.getElementById("aboutText").innerHTML = content[loc].about;
+    document.getElementById("specializationsText").innerHTML = content[loc].specializations;
+    document.getElementById("modesText").innerHTML = content[loc].modes;
+    document.getElementById("teamText").innerHTML = content[loc].team;
+    document.getElementById("contactText").innerHTML = content[loc].contact;
+  }
+</script>
+</body>
+</html>
